@@ -17,6 +17,8 @@ import { useState } from "react";
 import PageTitle from "../UseEffectCourse/PageTitle";
 import DataFetcher from "../UseEffectCourse/jsonexercice";
 import { ScrollTracker } from "../UseEffectCourse/scrolleexercice";
+
+import ChildExercice from "../exercice2_useEffect/Child_exercice";
 function App() {
   const t = [3, 2, 5, 8];
   const tab = [
@@ -46,9 +48,14 @@ function App() {
         </>
       ) : null}
 
-      <button onClick={() => setVisible(!visisble)}>Toggle</button>
       */}
-      <DataFetcher />
+      {/*<DataFetcher />*/}
+      {visisble ? (
+        <>
+          <ChildExercice />
+        </>
+      ) : null}
+      <button onClick={() => setVisible(!visisble)}>Toggle</button>
     </>
   );
 }
