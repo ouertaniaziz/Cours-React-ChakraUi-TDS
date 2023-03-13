@@ -19,6 +19,8 @@ import DataFetcher from "../UseEffectCourse/jsonexercice";
 import { ScrollTracker } from "../UseEffectCourse/scrolleexercice";
 import { ScrollableList } from "../useRefExercice/scrollableList";
 import ChildExercice from "../exercice2_useEffect/Child_exercice";
+import Dashboard from "../chakraExercice/dashbord";
+import TodoList from "../todolist/todolist";
 function App() {
   const t = [3, 2, 5, 8];
   const tab = [
@@ -58,7 +60,10 @@ function App() {
       ) : null}
       <button onClick={() => setVisible(!visisble)}>Toggle</button>
             <ScrollableList />
+                  <Dashboard />
+
 */}
+      <TodoList />
     </>
   );
 }
