@@ -19,8 +19,9 @@ import DataFetcher from "../UseEffectCourse/jsonexercice";
 import { ScrollTracker } from "../UseEffectCourse/scrolleexercice";
 import { ScrollableList } from "../useRefExercice/scrollableList";
 import ChildExercice from "../exercice2_useEffect/Child_exercice";
-import Dashboard from "../chakraExercice/dashbord";
 import TodoList from "../todolist/todolist";
+import SignupForm from "../signUpForm/SignUpForm";
+import Dashboard from "../signUpForm/SignUpForm";
 function App() {
   const t = [3, 2, 5, 8];
   const tab = [
@@ -62,8 +63,10 @@ function App() {
             <ScrollableList />
                   <Dashboard />
 
+                  <TodoList />
+
 */}
-      <TodoList />
+      <SignupForm />
     </>
   );
 }
