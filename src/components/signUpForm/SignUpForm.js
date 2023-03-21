@@ -8,7 +8,17 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
-
+import axios from "axios";
+import { Formik, Form, Field } from "formik";
+import * as yup from "yup";
+const validateSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("email doit avoire la forme de xxxxxxxxxx")
+    .required("email est obligatoire"),
+  username: yup.string().required("nom est obligatoire"),
+  lastname: yup.string().required("prenom est obligatoire"),
+});
 const SignUpForm = () => {
   const emailInput = useRef("");
   const nomInput = useRef("");
@@ -17,7 +27,7 @@ const SignUpForm = () => {
   const MDPInput = useRef("");
   const CMDPInput = useRef("");
   const [errors, setErrors] = useState([]);
-  const handleSubmit = (event) => {
+  /*  const handleSubmit = (event) => {
     event.preventDefault();
     /*
     pour un email :   /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -25,7 +35,7 @@ const SignUpForm = () => {
      pour un phone number : /^\d{8}$/
     pour chaine de caractére et nombre : /^[a-zA-Z0-9\s,'-]*$/
     
-    */
+    */ /*
     const nameRegex = /^[a-zA-Z ]+$/; // Matches letters and spaces only
 
     const email = emailInput.current.value;
@@ -36,11 +46,63 @@ const SignUpForm = () => {
       setErrors({ nameIsEmpty: " le nom  doit etre une ffffff " });
     } else {
       emailInput.current.value = "";
+      nomInput.current.value = "";
       setErrors([]);
     }
-  };
+  };*/
   return (
-    <form onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{
+        email: "",
+        username: "",
+        lastname: "",
+      }}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+      validationSchema={validateSchema}
+    >
+      <Form>
+        <VStack>
+          <Field name="email">
+            {({ field, form }) => (
+              <FormControl id="email" isInvalid={form.errors.email}>
+                <FormLabel>email</FormLabel>
+                <Input type="text" {...field} />
+                <FormHelperText>{form.errors.email}</FormHelperText>
+              </FormControl>
+            )}
+          </Field>
+          <HStack>
+            <Field name="username">
+              {({ field, form }) => (
+                <FormControl id="username" isInvalid={form.errors.username}>
+                  <FormLabel>username</FormLabel>
+                  <Input type="text" {...field} />
+                  <FormHelperText>{form.errors.username}</FormHelperText>
+                </FormControl>
+              )}
+            </Field>
+            <Field name="lastname">
+              {({ field, form }) => (
+                <FormControl id="lastname" isInvalid={form.errors.lastname}>
+                  <FormLabel>prenom</FormLabel>
+                  <Input type="text" {...field} />
+                  <FormHelperText>{form.errors.lastname}</FormHelperText>
+                </FormControl>
+              )}
+            </Field>
+          </HStack>
+        </VStack>
+        <Button type="submit">send</Button>
+      </Form>
+    </Formik>
+  );
+};
+
+export default SignUpForm;
+
+/* <form onSubmit={handleSubmit}>
       <VStack>
         <FormControl id="email" isInvalid={errors.emailIsEmpty}>
           <FormLabel>email</FormLabel>
@@ -78,8 +140,4 @@ const SignUpForm = () => {
         </HStack>
       </VStack>
       <Button type="submit">send</Button>
-    </form>
-  );
-};
-
-export default SignUpForm;
+  </form>*/
